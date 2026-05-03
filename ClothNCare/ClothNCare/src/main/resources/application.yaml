@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: ${DATABASE_URL:jdbc:sqlite:file:./data/clothncare.db?foreign_keys=on}
+    driver-class-name: ${DATABASE_DRIVER:org.sqlite.JDBC}
+
+  config:
+    JWT_SECRET_KEY: ${JWT_SECRET_KEY:$6uP+yBGvet!f5w&Wtdk}9Em^UjHiT>5e${cPq3<9^0}
+
+  jpa:
+    database-platform: ${DATABASE_DIALECT:org.hibernate.community.dialect.SQLiteDialect}
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+  application:
+    name: ClothNCare
+
+server:
+  port: ${PORT:8080}

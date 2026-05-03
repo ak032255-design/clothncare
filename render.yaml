@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: clothncare
+    env: java
+    rootDir: ClothNCare/ClothNCare
+    region: oregon
+    plan: free
+    buildCommand: |
+      # Build frontend first
+      cd ../../ClothNCareFrontend/cloth-n-care-ui
+      npm install
+      npm run build
+      cd -
+      # Build backend (will copy frontend dist via maven-antrun-plugin)
+      ./mvnw clean package -DskipTests
+    startCommand: chmod +x start.sh && ./start.sh
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: clothncare-db
+          property: connectionString
+      - key: DATABASE_DRIVER
+        value: org.postgresql.Driver
+      - key: DATABASE_DIALECT
+        value: org.hibernate.dialect.PostgreSQLDialect
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: JAVA_OPTS
+        value: "-Xmx512m"
+
+databases:
+  - name: clothncare-db
+    plan: free
+    region: oregon
+    majorVersion: "15"
