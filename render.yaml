@@ -32,4 +32,3 @@ databases:
   - name: clothncare-db
     plan: free
     region: oregon
-    majorVersion: "15"
