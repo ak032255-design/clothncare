@@ -1,0 +1,13 @@
+node_modules/
+dist/
+target/
+*.exe
+*.zip
+*.sed
+*.cmd
+*.ps1
+launch-clothncare.*
+run-clothncare-exe.*
+launcher-logs/
+ClothNCareLauncher.exe
+ClothNCareLauncher.sed
